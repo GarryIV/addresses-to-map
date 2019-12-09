@@ -1,3 +1,5 @@
 *.idea/
-idesensor.json
 *.iml
+.yandex.js
+idesensor.json
+node_modules/
