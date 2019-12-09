@@ -12,6 +12,7 @@
   "dependencies": {
     "bluebird": "^3.7.2",
     "csv": "^5.3.1",
+    "csvtojson": "^2.0.10",
     "json2csv": "^4.5.4",
     "request": "^2.88.0",
     "request-promise-any": "^1.0.8"
