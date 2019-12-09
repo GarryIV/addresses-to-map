@@ -35,10 +35,10 @@ Promise.resolve()
 
     const records = await Promise.mapSeries(addresses, async input => {
       const address = input.address;
-      const description = input.description;
+      const description = input.description.replace(/"/g, "'");
 
       function log(message) {
-        console.info(`${address} : ${message}`);
+        console.info(`${lineNumber} ${address} : ${message}`);
       }
 
       function toCsvRecord(response) {
@@ -87,14 +87,14 @@ Promise.resolve()
         const result = {};
         result[LATITUDE] = Number(latitude);
         result[LONGITUDE] = Number(longitude);
-        result[DESCRIPTION1] = description;
+        result[DESCRIPTION1] = description + ": " + address;
         result[DESCRIPTION2] = description;
         result[LINE_NO] = lineNumber++;
 
         return  result;
       }
 
-      log(`Processing ${lineNumber} ${address}`);
+      log('Processing');
       const response = await resolveAddress(address);
       return toCsvRecord(response);
     }).filter(it => !!it);
