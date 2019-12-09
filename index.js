@@ -7,13 +7,12 @@ async function test(address) {
     url,
     json: true
   }).then(data => {
-    console.info(data);
     return data.response;
   });
 }
 
 Promise.resolve()
   .then(async() => {
-    const message = JSON.stringify(await test("Тверская 6"));
+    const message = JSON.stringify(await test("г.Москва, Тверская 6"));
     console.info(message)
   });
