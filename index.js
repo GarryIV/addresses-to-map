@@ -1,13 +1,19 @@
 const yandex = require('./.yandex.js');
-const rp = require('request-promise-native');
+const rp = require('request-promise-any');
 
-async function test() {
-  const surl = `https://geocode-maps.yandex.ru/1.x/?apikey=${yandex.key}&geocode=Москва,+Тверская+улица,+дом+7`;
-  return rp(surl)
-    .then(function (htmlString) {
-      console.log(htmlString);
-    });
+async function test(address) {
+  const url = `https://geocode-maps.yandex.ru/1.x/?apikey=${yandex.key}&geocode=${encodeURIComponent(address)}&format=json`;
+  return rp({
+    url,
+    json: true
+  }).then(data => {
+    console.info(data);
+    return data.response;
+  });
 }
 
 Promise.resolve()
-  .then(() => test());
+  .then(async() => {
+    const message = JSON.stringify(await test("Тверская 6"));
+    console.info(message)
+  });
