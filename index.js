@@ -1,9 +1,9 @@
-const yandex = require('./.yandex.js');
-const rp = require('request-promise-any');
-const { Parser } = require('json2csv');
-const fs = require('fs');
 const Promise = require('bluebird');
 const csvToJson = require('csvtojson');
+const { Parser } = require('json2csv');
+const fs = require('fs');
+const rp = require('request-promise-any');
+const yandex = require('./.yandex.js');
 
 async function resolveAddress(address) {
   const url = `https://geocode-maps.yandex.ru/1.x/?apikey=${yandex.key}&geocode=${encodeURIComponent(address)}&format=json`;
